@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FubarDev.FtpServer" Version="3.0.0-rc.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.2.0" />
@@ -19,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AwareGroup.FtpServer.FileSystem.AzureStorage\AwareGroup.FtpServer.FileSystem.AzureStorage.csproj" />
+    <ProjectReference Include="..\FubarDev.FtpServer\src\FubarDev.FtpServer\FubarDev.FtpServer.csproj" />
   </ItemGroup>
 
 </Project>

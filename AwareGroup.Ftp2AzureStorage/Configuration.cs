@@ -9,6 +9,8 @@ namespace AwareGroup.Ftp2AzureStorage
         //FTP Server Settings
         public static string FtpServerIpAddress => GetEnvironmentVariable(nameof(FtpServerIpAddress), "0.0.0.0");
         public static int FtpServerTcpPort => GetEnvironmentVariable(nameof(FtpServerTcpPort), 21);
+        public static int FtpServePasvMinPort => GetEnvironmentVariable(nameof(FtpServePasvMinPort), 50000);
+        public static int FtpServePasvMaxPort => GetEnvironmentVariable(nameof(FtpServePasvMaxPort), 50010);
         public static int FtpServerMaxConnections => GetEnvironmentVariable(nameof(FtpServerMaxConnections), 10);
 
         //Logging

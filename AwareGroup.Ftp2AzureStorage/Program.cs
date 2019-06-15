@@ -43,6 +43,9 @@ namespace AwareGroup.Ftp2AzureStorage
                     opt.ServerAddress = Configuration.FtpServerIpAddress;
                     opt.MaxActiveConnections = Configuration.FtpServerMaxConnections;
                     opt.Port = Configuration.FtpServerTcpPort;
+                    opt.PasvAddress = Configuration.FtpServerIpAddress;
+                    opt.PasvMinPort = Configuration.FtpServePasvMinPort;
+                    opt.PasvMaxPort = Configuration.FtpServePasvMaxPort;
                 });
 
                 //attach plumbing to start service

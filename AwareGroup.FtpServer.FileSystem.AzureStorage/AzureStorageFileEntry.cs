@@ -31,5 +31,7 @@ namespace AwareGroup.FtpServer.FileSystem.AzureStorage
         public string Owner => Common.GenericOwner;
 
         public string Group => Common.GenericGroup;
+
+        public IUnixFileSystem FileSystem => throw new NotImplementedException();
     }
 }

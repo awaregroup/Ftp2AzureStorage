@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwareGroup.Ftp2AzureStorage
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwareGroup.FtpServer.FileSystem.AzureStorage", "AwareGroup.FtpServer.FileSystem.AzureStorage\AwareGroup.FtpServer.FileSystem.AzureStorage.csproj", "{0F99FFA0-E34E-434D-8112-7DCC6F423B03}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FubarDev.FtpServer", "FubarDev.FtpServer\src\FubarDev.FtpServer\FubarDev.FtpServer.csproj", "{A4378B24-4E46-4880-A083-7A8809173F01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FubarDev", "FubarDev", "{13BBBC0F-563A-406D-9029-4DB7D67903BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FubarDev.FtpServer.Abstractions", "FubarDev.FtpServer\src\FubarDev.FtpServer.Abstractions\FubarDev.FtpServer.Abstractions.csproj", "{C0AB5620-023C-4D6E-B5ED-65C05B912916}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FubarDev.FtpServer.Commands", "FubarDev.FtpServer\src\FubarDev.FtpServer.Commands\FubarDev.FtpServer.Commands.csproj", "{2DF19A2F-2AAA-4B56-B291-684445ECF775}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +29,26 @@ Global
 		{0F99FFA0-E34E-434D-8112-7DCC6F423B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F99FFA0-E34E-434D-8112-7DCC6F423B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F99FFA0-E34E-434D-8112-7DCC6F423B03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4378B24-4E46-4880-A083-7A8809173F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4378B24-4E46-4880-A083-7A8809173F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4378B24-4E46-4880-A083-7A8809173F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4378B24-4E46-4880-A083-7A8809173F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0AB5620-023C-4D6E-B5ED-65C05B912916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0AB5620-023C-4D6E-B5ED-65C05B912916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0AB5620-023C-4D6E-B5ED-65C05B912916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0AB5620-023C-4D6E-B5ED-65C05B912916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF19A2F-2AAA-4B56-B291-684445ECF775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF19A2F-2AAA-4B56-B291-684445ECF775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF19A2F-2AAA-4B56-B291-684445ECF775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF19A2F-2AAA-4B56-B291-684445ECF775}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A4378B24-4E46-4880-A083-7A8809173F01} = {13BBBC0F-563A-406D-9029-4DB7D67903BD}
+		{C0AB5620-023C-4D6E-B5ED-65C05B912916} = {13BBBC0F-563A-406D-9029-4DB7D67903BD}
+		{2DF19A2F-2AAA-4B56-B291-684445ECF775} = {13BBBC0F-563A-406D-9029-4DB7D67903BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC5577A4-767F-446B-80CE-093DA68C39E6}
