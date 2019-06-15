@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="FubarDev.FtpServer.Abstractions" Version="3.0.0-rc.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
