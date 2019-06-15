@@ -2,10 +2,7 @@
 using FubarDev.FtpServer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Serilog;
-using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace AwareGroup.Ftp2AzureStorage
