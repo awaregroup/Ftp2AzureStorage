@@ -13,11 +13,7 @@ namespace AwareGroup.Ftp2AzureStorage
 
         //Logging
         public static string FtpServerLogLevel => GetEnvironmentVariable(nameof(FtpServerLogLevel), "Verbose");
-
-        ////Azure Blob Storage Settings
-        //public static string AzureStorageAccountName => GetEnvironmentVariable(nameof(AzureStorageAccountName), "");
-        //public static string AzureStorageAccountKey => GetEnvironmentVariable(nameof(AzureStorageAccountKey), "");
-
+        public static string WelcomeMessage => "\r\n                      __\r\n _____ _____ _____    \\ \\   _____                    _____ _\r\n|   __|_   _|  _  |___ \\ \\ |  _  |___ _ _ ___ ___   |   __| |_ ___ ___ ___ ___ ___\r\n|   __| | | |   __|___| > >|     |- _| | |  _| -_|  |__   |  _| . |  _| .'| . | -_|\r\n|__|    |_| |__|       / / |__|__|___|___|_| |___|  |_____|_| |___|_| |__,|_  |___|\r\n                      /_/                                                 |___|";
 
 
         //Helpers
