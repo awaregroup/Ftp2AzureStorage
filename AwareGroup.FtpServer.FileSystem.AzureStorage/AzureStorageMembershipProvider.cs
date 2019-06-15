@@ -23,13 +23,6 @@ namespace AwareGroup.FtpServer.FileSystem.AzureStorage
             _logger.LogInformation($"Validating credentials...");
 
             //reject details that don't conform to azure storage conventions
-            _logger.LogTrace($"Validating username: '{username}'");
-            if (username.Length > 20 || username.Any(char.IsUpper))
-            {
-                _logger.LogTrace("Username is not compliant.");
-                return new MemberValidationResult(MemberValidationStatus.InvalidLogin);
-            }
-
             _logger.LogTrace($"Validating password complexity");
             if (password.Length < 80 || password.Length > 92)
             {
