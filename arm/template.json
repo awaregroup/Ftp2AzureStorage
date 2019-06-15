@@ -1,0 +1,102 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "defaultValue": "ftp2azurestorage"
+        },
+        "image": {
+            "type": "string",
+            "defaultValue": "awaregroup/ftp2azurestorage:latest"
+        },
+        "ftpPort": {
+            "type": "int",
+            "defaultValue": 21
+        },
+        "ftpPasvMinPort": {
+            "type": "int",
+            "defaultValue": 50000
+        },
+        "ftpPasvMaxPort": {
+            "type": "int",
+            "defaultValue": 50003
+        }
+    },
+    "variables": {
+        "cpuCores": "1.0",
+        "memoryInGb": "1.5",
+        "publicPorts": "[concat(array(parameters('ftpPort')), range(parameters('ftpPasvMinPort'), add(1, sub(parameters('ftpPasvMaxPort'), parameters('ftpPasvMinPort')))))]"
+    },
+    "resources": [
+        {
+            "name": "[parameters('name')]",
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "2017-08-01-preview",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "containers": [
+                    {
+                        "name": "[parameters('name')]",
+                        "properties": {
+                            "image": "[parameters('image')]",
+                            "environmentVariables": [
+                                {
+                                    "name": "FtpServerTcpPort",
+                                    "value": "[parameters('ftpPort')]"
+                                },
+                                {
+                                    "name": "FtpServePasvMinPort",
+                                    "value": "[parameters('ftpPasvMinPort')]"
+                                },
+                                {
+                                    "name": "FtpServePasvMaxPort",
+                                    "value": "[parameters('ftpPasvMaxPort')]"
+                                },
+                                {
+                                    "name": "FtpServerMaxConnections",
+                                    "value": "[sub(parameters('ftpPasvMaxPort'), parameters('ftpPasvMinPort'))]"
+                                }
+                            ],
+                            "copy": [
+                                {
+                                    "name": "ports",
+                                    "count": "[length(variables('publicPorts'))]",
+                                    "input": {
+                                        "port": "[variables('publicPorts')[copyIndex('ports')]]"
+                                    }
+                                }
+                            ],
+                            "resources": {
+                                "requests": {
+                                    "cpu": "[variables('cpuCores')]",
+                                    "memoryInGb": "[variables('memoryInGb')]"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "osType": "Linux",
+                "ipAddress": {
+                    "type": "Public",
+                    "copy": [
+                        {
+                            "name": "ports",
+                            "count": "[length(variables('publicPorts'))]",
+                            "input": {
+                                "protocol": "tcp",
+                                "port": "[variables('publicPorts')[copyIndex('ports')]]"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "containerIPv4Address": {
+            "type": "string",
+            "value": "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', parameters('name'))).ipAddress.ip]"
+          }
+    }
+}
