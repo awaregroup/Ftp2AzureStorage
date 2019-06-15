@@ -33,7 +33,7 @@ namespace AwareGroup.Ftp2AzureStorage
             var hostBuilder = new HostBuilder()
             .ConfigureServices((hostContext, services) =>
             {
-                //attach serillog
+                //attach serilog
                 services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
 
                 //attach ftp server
