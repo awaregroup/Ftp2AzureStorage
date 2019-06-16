@@ -1,6 +1,7 @@
 ﻿using FubarDev.FtpServer;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,10 +12,12 @@ namespace AwareGroup.Ftp2AzureStorage
     {
         private readonly ILogger _logger;
         private readonly IFtpServerHost _ftpServerHost;
+        private readonly FtpServerOptions _ftpServerOptions;
 
         public FtpServerBridgeService(IFtpServerHost ftpServerHost, ILogger<FtpServerBridgeService> logger)
         {
             _ftpServerHost = ftpServerHost;
+            _ftpServerOptions = Configuration.FtpServerOptions;
             _logger = logger;
         }
 
@@ -27,6 +30,7 @@ namespace AwareGroup.Ftp2AzureStorage
             _logger.LogInformation("");
             _logger.LogInformation(Configuration.WelcomeMessage);
             _logger.LogInformation("");
+            _logger.LogInformation($"\r\n{JsonConvert.SerializeObject(Configuration.FtpServerOptions, Formatting.Indented)}");
             _logger.LogInformation("");
         }
 

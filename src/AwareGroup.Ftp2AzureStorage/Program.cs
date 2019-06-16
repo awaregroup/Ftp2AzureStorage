@@ -3,6 +3,7 @@ using FubarDev.FtpServer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AwareGroup.Ftp2AzureStorage
@@ -11,24 +12,7 @@ namespace AwareGroup.Ftp2AzureStorage
     {
         public static async Task Main(string[] args)
         {
-            #region Logging Setup
-            //configure Serilog
-            var loggerConfig = new LoggerConfiguration();
-            var logLevel = Configuration.FtpServerLogLevel.ToLower();
-            if (logLevel == "verbose") loggerConfig = loggerConfig.MinimumLevel.Verbose();
-            else if (logLevel == "information") loggerConfig = loggerConfig.MinimumLevel.Information();
-            else if (logLevel == "warning") loggerConfig = loggerConfig.MinimumLevel.Warning();
-            else if (logLevel == "debug") loggerConfig = loggerConfig.MinimumLevel.Debug();
-            else if (logLevel == "error") loggerConfig = loggerConfig.MinimumLevel.Error();
-            else if (logLevel == "fatal") loggerConfig = loggerConfig.MinimumLevel.Fatal();
-            else loggerConfig = loggerConfig.MinimumLevel.Verbose();
-
-            Log.Logger = loggerConfig
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
-                //TODO: Add additional log outputs
-                .CreateLogger();
-            #endregion
+            Configuration.ConfigureLogging();
 
             var hostBuilder = new HostBuilder()
             .ConfigureServices((hostContext, services) =>
@@ -40,12 +24,12 @@ namespace AwareGroup.Ftp2AzureStorage
                 services.AddFtpServer(builder => builder.UseAzureStorage());
                 services.Configure<FtpServerOptions>(opt =>
                 {
-                    opt.ServerAddress = Configuration.FtpServerIpAddress;
-                    opt.MaxActiveConnections = Configuration.FtpServerMaxConnections;
-                    opt.Port = Configuration.FtpServerTcpPort;
-                    opt.PasvAddress = Configuration.FtpServerIpAddress;
-                    opt.PasvMinPort = Configuration.FtpServePasvMinPort;
-                    opt.PasvMaxPort = Configuration.FtpServePasvMaxPort;
+                    opt.MaxActiveConnections = Configuration.FtpServerOptions.MaxActiveConnections;
+                    opt.PasvAddress = Configuration.FtpServerOptions.PasvAddress;
+                    opt.PasvMaxPort = Configuration.FtpServerOptions.PasvMaxPort;
+                    opt.PasvMinPort = Configuration.FtpServerOptions.PasvMinPort;
+                    opt.Port = Configuration.FtpServerOptions.Port;
+                    opt.ServerAddress = Configuration.FtpServerOptions.ServerAddress;
                 });
 
                 //attach plumbing to start service
