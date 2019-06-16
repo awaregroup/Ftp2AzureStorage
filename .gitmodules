@@ -1,0 +1,3 @@
+[submodule "src/FubarDev.FtpServer"]
+	path = src/FubarDev.FtpServer
+	url = https://github.com/FubarDevelopment/FtpServer.git
