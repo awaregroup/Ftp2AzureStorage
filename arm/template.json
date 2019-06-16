@@ -21,6 +21,10 @@
         "ftpPasvMaxPort": {
             "type": "int",
             "defaultValue": 50003
+        },
+        "dnsNameLabel": {
+            "type": "string",
+            "defaultValue": "ftp2azurestorage"
         }
     },
     "variables": {
@@ -32,7 +36,7 @@
         {
             "name": "[parameters('name')]",
             "type": "Microsoft.ContainerInstance/containerGroups",
-            "apiVersion": "2017-08-01-preview",
+            "apiVersion": "2018-02-01-preview",
             "location": "[resourceGroup().location]",
             "properties": {
                 "containers": [
@@ -79,6 +83,7 @@
                 "osType": "Linux",
                 "ipAddress": {
                     "type": "Public",
+                    "dnsNameLabel": "[parameters('dnsNameLabel')]",
                     "copy": [
                         {
                             "name": "ports",
@@ -97,6 +102,10 @@
         "containerIPv4Address": {
             "type": "string",
             "value": "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', parameters('name'))).ipAddress.ip]"
-          }
+        },
+        "containerPublicFqdn": {
+            "type": "string",
+            "value": "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', parameters('name'))).ipAddress.dnsNameLabel]"
+        }
     }
 }
