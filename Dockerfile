@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Release -o /app/out
+RUN dotnet publish -c Release --framework netcoreapp2.2 -o /app/out 
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/runtime:2.2-alpine3.9
